@@ -37,6 +37,7 @@
     "@opentiny/next-sdk": "^0.4.1",
     "@opentiny/tiny-robot": "^0.5.1",
     "@opentiny/tiny-robot-kit": "^0.5.1",
+    "@opentiny/tiny-robot-svgs": "^0.5.1",
     "@opentiny/vue": "^3.31.0",
     "@opentiny/vue-huicharts": "~3.31.0",
     "@opentiny/vue-icon": "~3.31.0",

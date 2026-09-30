@@ -99,7 +99,7 @@ export type Configure = {
    */
   LLM_MODEL: string;
   /**
-   * 大模型扩展请求参数（JSON 字符串，如 '{"enable_search":true}'）
+   * 大模型扩展请求参数（JSON 字符串，如 '{"enable_search":true,"search_options":{"forced_search":true}}'）
    */
   LLM_EXTRA_BODY: string;
 }
@@ -128,8 +128,8 @@ export const CONFIG_SCHEMA = Joi.object<Configure>({
   SWAGGER_TITLE: Joi.string().default('Tiny Pro'),
   SWAGGER_DESC: Joi.string().default('开箱即用的中后台模板'),
   SWAGGER_VERSION: Joi.string().default('1.0.0'),
-  LLM_BASE_URL: Joi.string().default('https://api.deepseek.com'),
+  LLM_BASE_URL: Joi.string().default('https://dashscope.aliyuncs.com/compatible-mode/v1'),
   LLM_API_KEY: Joi.string().allow('').default(''),
-  LLM_MODEL: Joi.string().default('deepseek-chat'),
+  LLM_MODEL: Joi.string().default('qwen-plus'),
   LLM_EXTRA_BODY: Joi.string().allow('').default(''),
 })

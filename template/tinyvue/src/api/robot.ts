@@ -9,7 +9,7 @@ const DEFAULT_PROXY_URL = '/api/robot/chat'
 
 /**
  * 解析 VITE_ROBOT_LLM_EXTRA_BODY（JSON 字符串），用于传入厂商扩展参数，
- * 如通义千问的联网搜索 {"enable_search":true}、Kimi 的 {"tools":[...]}
+ * 如通义千问的联网搜索 {"enable_search":true,"search_options":{"forced_search":true}}、Kimi 的 {"tools":[...]}
  */
 function parseExtraBody(): Record<string, unknown> {
   const { VITE_ROBOT_LLM_EXTRA_BODY } = import.meta.env
@@ -45,7 +45,7 @@ async function chatDirect(messages: RobotChatMessage[]): Promise<string> {
       'Authorization': `Bearer ${VITE_ROBOT_LLM_API_KEY}`,
     },
     body: JSON.stringify({
-      model: VITE_ROBOT_LLM_MODEL || 'deepseek-chat',
+      model: VITE_ROBOT_LLM_MODEL || 'qwen-plus',
       messages,
       ...parseExtraBody(),
     }),
@@ -70,7 +70,7 @@ async function chatViaProxy(messages: RobotChatMessage[]): Promise<string> {
     VITE_ROBOT_LLM_PROXY_URL || DEFAULT_PROXY_URL,
     {
       messages,
-      model: VITE_ROBOT_LLM_MODEL || 'deepseek-chat',
+      model: VITE_ROBOT_LLM_MODEL || 'qwen-plus',
       extraBody: VITE_ROBOT_LLM_EXTRA_BODY
         ? parseExtraBody()
         : undefined,

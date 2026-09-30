@@ -18,9 +18,9 @@ export class RobotService {
     model?: string,
     extraBody?: Record<string, unknown>,
   ): Promise<{ content: string }> {
-    const baseUrl = process.env.LLM_BASE_URL || 'https://api.deepseek.com';
+    const baseUrl = process.env.LLM_BASE_URL || 'https://dashscope.aliyuncs.com/compatible-mode/v1';
     const apiKey = process.env.LLM_API_KEY;
-    const llmModel = model || process.env.LLM_MODEL || 'deepseek-chat';
+    const llmModel = model || process.env.LLM_MODEL || 'qwen-plus';
 
     if (!apiKey) {
       throw new HttpException(

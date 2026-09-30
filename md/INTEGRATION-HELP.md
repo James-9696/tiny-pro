@@ -105,9 +105,9 @@ const TinyRobot = defineAsyncComponent(
 | 配置项 | 说明 | 默认值 |
 |---|---|---|
 | `VITE_ROBOT_LLM_MODE` | `proxy`=走后端代理（key 在服务端，**推荐**）；`direct`=前端直连（key 暴露给浏览器，仅内网/demo） | `proxy` |
-| `VITE_ROBOT_LLM_BASE_URL` | OpenAI 兼容服务地址 | `https://api.deepseek.com` |
+| `VITE_ROBOT_LLM_BASE_URL` | OpenAI 兼容服务地址 | `https://dashscope.aliyuncs.com/compatible-mode/v1` |
 | `VITE_ROBOT_LLM_API_KEY` | API key（direct 模式使用；proxy 模式以前端不读） | 空 |
-| `VITE_ROBOT_LLM_MODEL` | 当前设置模型名 |`qwen-plus`| 默认模型名 | `deepseek-chat` |
+| `VITE_ROBOT_LLM_MODEL` | 当前设置模型名 |`qwen-plus`|
 | `VITE_ROBOT_LLM_PROXY_URL` | proxy 模式的后端接口地址 | `/api/robot/chat` |
 | `VITE_ROBOT_LLM_EXTRA_BODY` | **厂商扩展参数透传**（JSON 字符串），见下表 | 空 |
 
@@ -125,9 +125,8 @@ const TinyRobot = defineAsyncComponent(
 
 | 服务 | BASE_URL | MODEL | EXTRA_BODY |
 |---|---|---|---|
-| 通义千问（联网搜索） | `https://dashscope.aliyuncs.com/compatible-mode/v1` | `qwen-plus` | `{"enable_search":true}` |
+| 通义千问（联网搜索） | `https://dashscope.aliyuncs.com/compatible-mode/v1` | `qwen-plus` | `{"enable_search":true,"search_options":{"forced_search":true}}` |
 | Kimi（联网搜索） | `https://api.moonshot.cn/v1` | `moonshot-v1-8k` | `{"tools":[{"type":"builtin_function","function":{"name":"$web_search"}}]}` |
-| DeepSeek（无联网） | `https://api.deepseek.com` | `deepseek-chat` | 留空 |
 
 > Perplexity（`api.perplexity.ai`）虽内置搜索且兼容 OpenAI 协议，但**国内网络不可达**，未采用。
 
@@ -137,7 +136,7 @@ const TinyRobot = defineAsyncComponent(
 LLM_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
 LLM_API_KEY=sk-你的key
 LLM_MODEL=qwen-plus
-LLM_EXTRA_BODY={"enable_search":true}
+LLM_EXTRA_BODY={"enable_search":true,"search_options":{"forced_search":true}}
 ```
 
 ### 2.4 ⚠️ dev.env 不会自动注入 import.meta.env
@@ -194,7 +193,7 @@ tiny init pro
 
 **proxy 模式（推荐）**：
 
-1. 前端 `dev.env` 保持 `VITE_ROBOT_LLM_MODE=proxy`，`EXTRA_BODY={"enable_search":true}` 会自动透传给后端；
+1. 前端 `dev.env` 保持 `VITE_ROBOT_LLM_MODE=proxy`，`EXTRA_BODY={"enable_search":true,"search_options":{"forced_search":true}}` 会自动透传给后端；
 2. 后端 `nestJs/.env` 填 `LLM_API_KEY`（`sk-` 开头，百炼平台申请）；
 3. **重启后端**（`.env` 只在进程启动时读入内存）+ 重启前端。
 
@@ -205,7 +204,7 @@ VITE_ROBOT_LLM_MODE=direct
 VITE_ROBOT_LLM_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
 VITE_ROBOT_LLM_API_KEY=sk-你的key
 VITE_ROBOT_LLM_MODEL=qwen-plus
-VITE_ROBOT_LLM_EXTRA_BODY={"enable_search":true}
+VITE_ROBOT_LLM_EXTRA_BODY={"enable_search":true,"search_options":{"forced_search":true}}
 ```
 
 重启前端 + 硬性刷新即可，不需要后端。

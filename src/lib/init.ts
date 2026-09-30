@@ -349,9 +349,9 @@ const createServerSync = (answers: ProjectInfo) => {
       EXPIRES_IN: '2h',
       PAGINATION_PAGE: 1,
       PAGINATION_LIMIT: 10,
-      LLM_BASE_URL: 'https://api.deepseek.com',
+      LLM_BASE_URL: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
       LLM_API_KEY: '',
-      LLM_MODEL: 'deepseek-chat',
+      LLM_MODEL: 'qwen-plus',
       LLM_EXTRA_BODY: '',
     };
     const envStr = objToEnv(config);

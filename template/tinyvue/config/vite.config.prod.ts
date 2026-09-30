@@ -27,13 +27,13 @@ export default mergeConfig(
         process.env.VITE_ROBOT_LLM_MODE || 'proxy',
       ),
       'import.meta.env.VITE_ROBOT_LLM_BASE_URL': JSON.stringify(
-        process.env.VITE_ROBOT_LLM_BASE_URL || 'https://api.deepseek.com',
+        process.env.VITE_ROBOT_LLM_BASE_URL || 'https://dashscope.aliyuncs.com/compatible-mode/v1',
       ),
       'import.meta.env.VITE_ROBOT_LLM_API_KEY': JSON.stringify(
         process.env.VITE_ROBOT_LLM_API_KEY || '',
       ),
       'import.meta.env.VITE_ROBOT_LLM_MODEL': JSON.stringify(
-        process.env.VITE_ROBOT_LLM_MODEL || 'deepseek-chat',
+        process.env.VITE_ROBOT_LLM_MODEL || 'qwen-plus',
       ),
       'import.meta.env.VITE_ROBOT_LLM_PROXY_URL': JSON.stringify(
         process.env.VITE_ROBOT_LLM_PROXY_URL || '/api/robot/chat',
